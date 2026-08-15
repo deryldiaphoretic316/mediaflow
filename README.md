@@ -1,5 +1,14 @@
 # MediaFlow
 
+## Download (Windows portable)
+
+Скачайте готовый комплект: **[MediaFlow-portable-0.1.0-win64.zip](https://github.com/vkgeorgia/mediaflow/releases/latest/download/MediaFlow-portable-0.1.0-win64.zip)**  
+(тот же файл на вкладке [Releases](https://github.com/vkgeorgia/mediaflow/releases)).
+
+Распакуйте архив и запустите `MediaFlow.exe`. Системный Python не нужен. Папку не разбирайте — рядом с exe должны остаться `runtime\`, `app.py` и `static\`.
+
+---
+
 Desktop app for organizing photos and videos: **copy**, **sort**, **deduplicate**, and edit basic **EXIF / file dates**.
 
 Free and open source under the [MIT License](LICENSE).  
@@ -55,6 +64,21 @@ npm run build
 
 On Windows, installers land in `src-tauri/target/release/bundle/{msi,nsis}/`. Bundle targets for macOS can be added when that platform is productized.
 
+## Portable pack (Windows, self-contained)
+
+Builds a folder you can copy anywhere (USB, another PC). Includes `MediaFlow.exe`, `README.txt`, and a private `runtime\` with embeddable Python + dependencies — **no system Python install required**.
+
+```bat
+npm install
+npm run pack:portable
+```
+
+Output: `dist\MediaFlow-portable\`
+
+Optional: `powershell -ExecutionPolicy Bypass -File scripts\pack-portable.ps1 -SkipBuild` if `MediaFlow.exe` is already built.
+
+WebView2 Runtime must be present on the target PC (normal on Windows 10/11). ExifTool remains optional and external.
+
 ## Configuration
 
 - Runtime settings are stored in `settings.json` next to `app.py` (gitignored).
@@ -68,6 +92,7 @@ On Windows, installers land in `src-tauri/target/release/bundle/{msi,nsis}/`. Bu
 | `static/index.html` | Single-page UI (Alpine.js + Tailwind CDN) |
 | `src-tauri/` | Tauri 2 desktop shell |
 | `run.bat` | Windows dev launcher |
+| `scripts/pack-portable.ps1` | Build self-contained portable folder (Windows) |
 | `requirements.txt` | Python dependencies |
 
 ## Notes

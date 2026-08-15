@@ -8,6 +8,10 @@ repository = "https://github.com/vkgeorgia/mediaflow"
 edition = "2021"
 rust-version = "1.77"
 
+[[bin]]
+name = "MediaFlow"
+path = "src/main.rs"
+
 [build-dependencies]
 tauri-build = { version = "2", features = [] }
 

@@ -59,15 +59,10 @@ fn find_project_root(app: &tauri::AppHandle) -> Option<PathBuf> {
 /// Build the ordered list of (program, args) candidates we will try to spawn
 /// in [`start_backend`]. The first candidate that successfully spawns wins.
 ///
-/// Priority on Windows (RD-031..RD-034):
-///   1. `<project_root>\.venv\Scripts\uvicorn.exe`
-///   2. `python -m uvicorn ...`
-///   3. `py     -m uvicorn ...`
-///
-/// Priority on Unix (kept for parity with the macOS source):
-///   1. `<project_root>/.venv/bin/uvicorn`
-///   2. `python3 -m uvicorn ...`
-///   3. `python  -m uvicorn ...`
+/// Priority:
+///   1. Portable embeddable runtime: `<project_root>/runtime/python(.exe) -m uvicorn ...`
+///   2. Project virtualenv uvicorn (`.venv`)
+///   3. System Python module fallbacks (`python` / `py` / `python3`)
 fn uvicorn_candidates(project_root: &Path) -> Vec<(PathBuf, Vec<String>)> {
     let common_args: Vec<String> = vec![
         "app:app".into(),
@@ -79,7 +74,20 @@ fn uvicorn_candidates(project_root: &Path) -> Vec<(PathBuf, Vec<String>)> {
 
     let mut candidates: Vec<(PathBuf, Vec<String>)> = Vec::new();
 
-    // 1) Project virtualenv uvicorn
+    let mut module_args: Vec<String> = vec!["-m".into(), "uvicorn".into()];
+    module_args.extend(common_args.clone());
+
+    // 1) Portable runtime shipped next to the app (Variant A portable pack)
+    let portable_python = if cfg!(windows) {
+        project_root.join("runtime").join("python.exe")
+    } else {
+        project_root.join("runtime").join("bin").join("python3")
+    };
+    if portable_python.is_file() {
+        candidates.push((portable_python, module_args.clone()));
+    }
+
+    // 2) Project virtualenv uvicorn
     let venv_uvicorn = if cfg!(windows) {
         project_root
             .join(".venv")
@@ -89,13 +97,10 @@ fn uvicorn_candidates(project_root: &Path) -> Vec<(PathBuf, Vec<String>)> {
         project_root.join(".venv").join("bin").join("uvicorn")
     };
     if venv_uvicorn.is_file() {
-        candidates.push((venv_uvicorn, common_args.clone()));
+        candidates.push((venv_uvicorn, common_args));
     }
 
-    // 2) and 3) module-style fallbacks via system Python
-    let mut module_args: Vec<String> = vec!["-m".into(), "uvicorn".into()];
-    module_args.extend(common_args);
-
+    // 3) System Python fallbacks
     if cfg!(windows) {
         candidates.push((PathBuf::from("python"), module_args.clone()));
         candidates.push((PathBuf::from("py"), module_args));
@@ -165,8 +170,17 @@ fn start_backend(app: &tauri::AppHandle) -> Result<Child, String> {
         cmd.args(&args)
             .current_dir(&project_root)
             .stdin(Stdio::null())
-            .stdout(Stdio::inherit())
-            .stderr(Stdio::inherit());
+            .stdout(Stdio::null())
+            .stderr(Stdio::null());
+
+        // Avoid a flashing console window when spawning the portable/system Python.
+        #[cfg(windows)]
+        {
+            use std::os::windows::process::CommandExt;
+            const CREATE_NO_WINDOW: u32 = 0x0800_0000;
+            cmd.creation_flags(CREATE_NO_WINDOW);
+        }
+
         match cmd.spawn() {
             Ok(child) => return Ok(child),
             Err(e) => {
