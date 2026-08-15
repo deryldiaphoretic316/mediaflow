@@ -2,7 +2,7 @@
   "name": "mediaflow",
   "private": true,
   "version": "0.1.0",
-  "description": "MediaFlow — organize photos and videos (copy, sort, deduplicate)",
+  "description": "Desktop app for organizing photos and videos — copy, sort, deduplicate, and edit EXIF and file dates",
   "license": "MIT",
   "author": "Valerii Korobeinikov",
   "repository": {

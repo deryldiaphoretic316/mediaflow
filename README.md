@@ -1,23 +1,18 @@
 # MediaFlow
 
-## Download (Windows portable)
+**Desktop app for organizing photos and videos — copy, sort, deduplicate, and edit EXIF and file dates.**
 
-Скачайте именно этот файл: **`MediaFlow-portable-0.1.0-win64.zip`**
+Point it at a memory card or a folder: it files everything into `camera/year/month`, finds the duplicates, and repairs the dates the camera got wrong. Free and open source under the [MIT License](LICENSE).
 
-- из репозитория: [releases/MediaFlow-portable-0.1.0-win64.zip](https://github.com/vkgeorgia/mediaflow/raw/master/releases/MediaFlow-portable-0.1.0-win64.zip)
-- или со страницы [Releases](https://github.com/vkgeorgia/mediaflow/releases) (тот же архив)
+## Download
 
-Распакуйте и запустите `MediaFlow.exe`. Системный Python не нужен. Не вытаскивайте exe отдельно — рядом должны остаться `runtime\`, `app.py` и `static\`.
+Windows, portable — no installer and no system Python required:
 
----
+**[MediaFlow-portable-0.1.0-win64.zip](https://github.com/vkgeorgia/mediaflow/releases/download/v0.1.0/MediaFlow-portable-0.1.0-win64.zip)** (~32 MB) — or pick it from the [Releases](https://github.com/vkgeorgia/mediaflow/releases) page.
 
-Desktop app for organizing photos and videos: **copy**, **sort**, **deduplicate**, and edit basic **EXIF / file dates**.
+Unpack it anywhere and run `MediaFlow.exe`. Keep the folder together: `runtime\`, `app.py` and `static\` must stay next to the executable.
 
-Free and open source under the [MIT License](LICENSE).  
-Author: **[Valerii Korobeinikov](https://github.com/vkgeorgia)**.  
-Repository: [github.com/vkgeorgia/mediaflow](https://github.com/vkgeorgia/mediaflow).
-
-Primary development and packaging today target **Windows**; the stack (Tauri + FastAPI + SPA) is intended to stay cross-platform, with **macOS** support planned.
+Windows is the packaged platform today. The stack (Tauri + FastAPI + SPA) is cross-platform, and macOS packaging is planned.
 
 ## Features
 
@@ -29,62 +24,58 @@ Primary development and packaging today target **Windows**; the stack (Tauri + F
 
 ## Requirements
 
+Only for running from source or building; the portable pack needs none of it.
+
 - [Python](https://www.python.org/) 3.9+ on `PATH` (`py` / `python` on Windows, `python3` on macOS/Linux)
-- Optional but recommended: [ExifTool](https://exiftool.org/) on `PATH` (RAW / video camera & shoot date). On Windows: `winget install OliverBetz.ExifTool`
-- For the desktop shell (optional): [Node.js](https://nodejs.org/) 18+, [Rust](https://rustup.rs/)
+- Optional but recommended: [ExifTool](https://exiftool.org/) on `PATH`, for camera and shoot dates on RAW and video (`winget install OliverBetz.ExifTool` on Windows)
+- For the desktop shell: [Node.js](https://nodejs.org/) 18+ and [Rust](https://rustup.rs/)
 
-## Quick start (backend + browser)
+## Run from source
 
-**Windows:**
+On Windows:
 
 ```bat
 run.bat
 ```
 
-**Any platform** (after creating a venv and installing `requirements.txt`):
+On any platform, after creating a venv and installing `requirements.txt`:
 
 ```bash
 python -m uvicorn app:app --host 127.0.0.1 --port 8765
 ```
 
-Then open [http://127.0.0.1:8765](http://127.0.0.1:8765).
-
-`run.bat` creates `.venv` on first launch and installs dependencies from `requirements.txt`.
+Then open [http://127.0.0.1:8765](http://127.0.0.1:8765). `run.bat` creates `.venv` on first launch and installs the dependencies for you.
 
 ## Desktop shell (Tauri)
 
 ```bash
 npm install
-npm run dev
+npm run dev      # development
+npm run build    # production build
 ```
 
-Production build:
+On Windows the installers land in `src-tauri/target/release/bundle/{msi,nsis}/`. Bundle targets for macOS can be added when that platform is productized.
 
-```bash
-npm run build
-```
+## Build the portable pack (Windows)
 
-On Windows, installers land in `src-tauri/target/release/bundle/{msi,nsis}/`. Bundle targets for macOS can be added when that platform is productized.
-
-## Portable pack (Windows, self-contained)
-
-Builds a folder you can copy anywhere (USB, another PC). Includes `MediaFlow.exe`, `README.txt`, and a private `runtime\` with embeddable Python + dependencies — **no system Python install required**.
+Produces a self-contained folder you can copy to a USB stick or another PC — `MediaFlow.exe`, `README.txt`, and a private `runtime\` with an embeddable Python and the dependencies.
 
 ```bat
 npm install
 npm run pack:portable
 ```
 
-Output: `dist\MediaFlow-portable\`
+Output: `dist\MediaFlow-portable\`. Add `-SkipBuild` to reuse an existing executable:
 
-Optional: `powershell -ExecutionPolicy Bypass -File scripts\pack-portable.ps1 -SkipBuild` if `MediaFlow.exe` is already built.
+```bat
+powershell -ExecutionPolicy Bypass -File scripts\pack-portable.ps1 -SkipBuild
+```
 
-WebView2 Runtime must be present on the target PC (normal on Windows 10/11). ExifTool remains optional and external.
+The target PC needs the WebView2 Runtime, which is standard on Windows 10 and 11. ExifTool stays optional and external.
 
 ## Configuration
 
-- Runtime settings are stored in `settings.json` next to `app.py` (gitignored).
-- See `settings.example.json` for the schema and defaults.
+Runtime settings live in `settings.json` next to `app.py` (gitignored). See `settings.example.json` for the schema and the defaults.
 
 ## Project layout
 
@@ -94,19 +85,23 @@ WebView2 Runtime must be present on the target PC (normal on Windows 10/11). Exi
 | `static/index.html` | Single-page UI (Alpine.js + Tailwind CDN) |
 | `src-tauri/` | Tauri 2 desktop shell |
 | `run.bat` | Windows dev launcher |
-| `scripts/pack-portable.ps1` | Build self-contained portable folder (Windows) |
+| `scripts/pack-portable.ps1` | Build the self-contained portable folder (Windows) |
 | `requirements.txt` | Python dependencies |
 
 ## Notes
 
-- SMB destination is disabled in the MVP on all platforms.
-- ExifTool is an **external** tool; it is not bundled. Without it, RAW/video may fall back to `mtime` and `camera=Unknown`.
-- MPEG Program Stream files (`.mpg` / `.mpeg`): embedded EXIF cannot be written by ExifTool; file timestamps can still be edited.
+- SMB destinations are disabled in the MVP on all platforms.
+- ExifTool is an **external** tool and is not bundled. Without it, RAW and video may fall back to `mtime` and `camera=Unknown`.
+- MPEG Program Stream files (`.mpg` / `.mpeg`): ExifTool cannot write embedded EXIF for them; file timestamps can still be edited.
+
+## Contributing
+
+Bug reports and pull requests are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
 [MIT](LICENSE) © 2026 Valerii Korobeinikov
 
-## Contributing
+## Author
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+[Valerii Korobeinikov](https://github.com/vkgeorgia), Enterprise Architect — [korobeinikov.consulting](https://korobeinikov.consulting/) · [LinkedIn](https://www.linkedin.com/in/valeriikorobeinikov/)

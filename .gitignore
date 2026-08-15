@@ -40,5 +40,9 @@ Thumbs.db
 *.swp
 *.log
 
+# Packaged builds — published as GitHub Release assets, never committed
+releases/
+*.zip
+
 # Local patch / temp scripts
 _patch_*.py
