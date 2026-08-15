@@ -1,0 +1,9 @@
+{
+  "identifier": "default",
+  "description": "Permissions for the MediaFlow main window and the local web UI on 127.0.0.1:8765",
+  "windows": ["main"],
+  "permissions": ["core:default"],
+  "remote": {
+    "urls": ["http://127.0.0.1:8765/*", "http://localhost:8765/*"]
+  }
+}

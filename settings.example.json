@@ -1,0 +1,52 @@
+{
+  "source_path": "",
+  "destination_path": "",
+  "destination_smb": {
+    "enabled": false,
+    "server": "",
+    "share": "",
+    "username": "",
+    "mount_point": ""
+  },
+  "duplicate_handling": "skip",
+  "operation_mode": "copy",
+  "folder_structure": "camera/year/month",
+  "selected_extensions": [],
+  "sort": {
+    "source_path": "",
+    "destination_path": "",
+    "duplicates_path": "",
+    "unsortable_path": "",
+    "folder_structure": "camera/year/month",
+    "selected_extensions": [],
+    "rename_mode": "original",
+    "jpeg_to_jpg": false,
+    "extension_mode": "lowercase",
+    "operation_mode": "copy"
+  },
+  "dedup": {
+    "source_path": "",
+    "destination_path": "",
+    "duplicates_path": "",
+    "selected_extensions": [],
+    "match_mode": "name",
+    "action_mode": "delete",
+    "dry_run": false
+  },
+  "preferences": {
+    "language": "ru",
+    "theme": "dark",
+    "media_only_files": true,
+    "default_paths": {
+      "copy_source": "",
+      "copy_destination": "",
+      "sort_source": "",
+      "sort_destination": "",
+      "sort_duplicates": "",
+      "sort_unsortable": "",
+      "dedup_source": "",
+      "dedup_destination": "",
+      "dedup_duplicates": ""
+    }
+  }
+}

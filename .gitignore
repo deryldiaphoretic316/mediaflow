@@ -1,0 +1,44 @@
+# Agent rules (per ai-agent-rules-1.0.1.md, "Archive" section)
+ai-agent-rules-*.md
+
+# Local agent / planning docs (not for public repo)
+CLAUDE.md
+roadmap.md
+glossary.md
+TECHNICAL_SPEC_WINDOWS_AGENT.md
+
+# Archive folders (per ai-agent-rules-1.0.1.md, "Archive" section)
+0. archive/
+**/0. archive/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+.env
+.pytest_cache/
+
+# Node / Tauri
+node_modules/
+dist/
+build/
+src-tauri/target/
+src-tauri/gen/
+
+# Runtime state (settings file is created at first run next to app.py)
+settings.json
+
+# OS / IDE / local tooling
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.cursor/
+*.swp
+*.log
+
+# Local patch / temp scripts
+_patch_*.py
