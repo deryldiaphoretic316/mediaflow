@@ -2,10 +2,12 @@
 
 ## Download (Windows portable)
 
-Скачайте готовый комплект: **[MediaFlow-portable-0.1.0-win64.zip](https://github.com/vkgeorgia/mediaflow/releases/latest/download/MediaFlow-portable-0.1.0-win64.zip)**  
-(тот же файл на вкладке [Releases](https://github.com/vkgeorgia/mediaflow/releases)).
+Скачайте именно этот файл: **`MediaFlow-portable-0.1.0-win64.zip`**
 
-Распакуйте архив и запустите `MediaFlow.exe`. Системный Python не нужен. Папку не разбирайте — рядом с exe должны остаться `runtime\`, `app.py` и `static\`.
+- из репозитория: [releases/MediaFlow-portable-0.1.0-win64.zip](https://github.com/vkgeorgia/mediaflow/raw/master/releases/MediaFlow-portable-0.1.0-win64.zip)
+- или со страницы [Releases](https://github.com/vkgeorgia/mediaflow/releases) (тот же архив)
+
+Распакуйте и запустите `MediaFlow.exe`. Системный Python не нужен. Не вытаскивайте exe отдельно — рядом должны остаться `runtime\`, `app.py` и `static\`.
 
 ---
 
