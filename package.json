@@ -7,12 +7,12 @@
   "author": "Valerii Korobeinikov",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vkgeorgia/mediaflow-win.git"
+    "url": "https://github.com/vkgeorgia/mediaflow.git"
   },
   "bugs": {
-    "url": "https://github.com/vkgeorgia/mediaflow-win/issues"
+    "url": "https://github.com/vkgeorgia/mediaflow/issues"
   },
-  "homepage": "https://github.com/vkgeorgia/mediaflow-win#readme",
+  "homepage": "https://github.com/vkgeorgia/mediaflow#readme",
   "scripts": {
     "tauri": "tauri",
     "dev": "tauri dev",

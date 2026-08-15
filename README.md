@@ -4,7 +4,7 @@ Desktop app for organizing photos and videos on Windows: **copy**, **sort**, **d
 
 Free and open source under the [MIT License](LICENSE).  
 Author: **[Valerii Korobeinikov](https://github.com/vkgeorgia)**.  
-Repository: [github.com/vkgeorgia/mediaflow-win](https://github.com/vkgeorgia/mediaflow-win).
+Repository: [github.com/vkgeorgia/mediaflow](https://github.com/vkgeorgia/mediaflow).
 
 ## Features
 

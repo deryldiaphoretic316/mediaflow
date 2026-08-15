@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "MediaFlow desktop shell (Tauri + FastAPI)"
 authors = ["Valerii Korobeinikov"]
 license = "MIT"
-repository = "https://github.com/vkgeorgia/mediaflow-win"
+repository = "https://github.com/vkgeorgia/mediaflow"
 edition = "2021"
 rust-version = "1.77"
 
